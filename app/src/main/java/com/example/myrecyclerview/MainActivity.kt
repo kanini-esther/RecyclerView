@@ -6,19 +6,23 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import layout.NamesRecyclerViewAdapter
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val recyclerView:RecyclerView=findViewById(R.id.rvNames)
+        val lm = LinearLayoutManager(this)
+        recyclerView.layoutManager=lm
+        recyclerView.hasFixedSize()
+        val people= mutableListOf<Students>()
+        people.add(Students("Ruth","9/8/2010","Swimming"))
 
-//        RecyclerView_Main.setBackgroundColor(Color.CYAN)
-        rvNames.LayoutManager = LinearLayoutManager(baseContext)
+        val hello=NamesRecyclerViewAdapter(people)
+        recyclerView.adapter = hello
 
-        val namesAdapter = NamesRecyclerViewAdapter(listOf("Berril","Faith","Duncan","Caro","Marian","Nancy","Eunice","Monica","Martha","Moses",))
 
-        rvNames.adapter = namesAdapter
 
     }
 }
